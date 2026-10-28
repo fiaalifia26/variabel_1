@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LKPD VARIABEL - JavaScript</title>
+    <style>
+        :root {
+            --primary-sky: #0284c7;
+            --light-sky: #e0f2fe;
+            --deep-sky: #0369a1;
+            --accent-blue: #38bdf8;
+            --bg-gradient: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 50%, #7dd3fc 100%);
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --border-color: #7dd3fc;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: var(--bg-gradient);
+            color: var(--text-main);
+            min-height: 100vh;
+            padding: 20px;
+            background-attachment: fixed;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(2, 132, 199, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-sky), var(--deep-sky));
+            color: white;
+            padding: 30px;
+            text-align: center;
+            border-bottom: 4px solid var(--accent-blue);
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .student-info {
+            background: rgba(255, 255, 255, 0.2);
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            margin-top: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .section {
+            margin-bottom: 35px;
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+            border-left: 5px solid var(--primary-sky);
+        }
+
+        h2 {
+            color: var(--deep-sky);
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        p, label, li {
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+
+        ul {
+            margin-left: 20px;
+        }
+
+        .code-box {
+            background: #0f172a;
+            color: #38bdf8;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9rem;
+            margin: 15px 0;
+            overflow-x: auto;
+            border: 1px solid var(--border-color);
+        }
+
+        .answer-box {
+            background: var(--light-sky);
+            border: 1px solid var(--border-color);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            color: var(--text-main);
+        }
+
+        .answer-box strong {
+            color: var(--deep-sky);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.9rem;
+        }
+
+        table, th, td {
+            border: 1px solid #bae6fd;
+        }
+
+        th {
+            background: var(--light-sky);
+            color: var(--deep-sky);
+            padding: 10px;
+            text-align: left;
+        }
+
+        td {
+            padding: 10px;
+            color: var(--text-muted);
+        }
+
+        .run-btn {
+            background: var(--primary-sky);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.2s;
+            margin-top: 10px;
+        }
+
+        .run-btn:hover {
+            background: var(--deep-sky);
+        }
+
+        .console-output {
+            background: #1e293b;
+            color: #f8fafc;
+            padding: 10px 15px;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 0.85rem;
+            margin-top: 10px;
+            display: none;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: var(--light-sky);
+            color: var(--deep-sky);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border-color);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>LKPD VARIABEL - JAVASCRIPT</h1>
+            <p>Mata Pelajaran: Dasar-Dasar Pengembangan Perangkat Lunak dan Gim</p>
+            <div class="student-info">
+                <strong>Nama:</strong> Alifia | <strong>Kelas:</strong> X-PPLG 2
+            </div>
+        </header>
+
+        <div class="content">
+
+            <!-- AKTIVITAS D -->
+            <div class="section">
+                <h2>D. APERSEPSI</h2>
+                <p>Bayangkan kamu sedang membuat aplikasi data siswa. Program perlu mengetahui: Nama siswa, Kelas, Umur, Nilai, Jurusan.</p>
+                <div class="answer-box">
+                    <strong>Dugaan Cara Menyimpan Informasi dalam Program:</strong><br>
+                    Kita dapat menggunakan variabel di JavaScript dengan menggunakan kata kunci <code>let</code> atau <code>const</code>, lalu mengisinya dengan nilai teks (string) menggunakan tanda petik atau angka (number) secara langsung.
+                </div>
+            </div>
+
+            <!-- AKTIVITAS E -->
+            <div class="section">
+                <h2>E. AKTIVITAS 1 - MENGAMATI</h2>
+                <div class="code-box">
+let nama = "Budi";<br>
+let umur = 16;<br>
+let nilai = 85;<br>
+console.log(nama);<br>
+console.log(umur);<br>
+console.log(nilai);
+                </div>
+                <div class="answer-box">
+                    <strong>Jawaban Pertanyaan:</strong>
+                    <ol>
+                        <li><strong>Apa yang ditampilkan pada Console? </strong> <code>Budi</code>, <code>16</code>, dan <code>85</code>.</li>
+                        <li><strong>Apa fungsi nama, umur, dan nilai? </strong> Untuk menyimpan data nama, umur, dan nilai.</li>
+                        <li><strong>Apa yang terjadi jika kode <code>console.log(nama);</code> dijalankan?</strong> Menyimpan variabel nama yaitu Budi.</li>
+                        <li><strong>Apa yang dimaksud dengan variable? </strong> Tempat untuk menyimpan data agar dapat digunakan kembali dalam program.</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- AKTIVITAS F -->
+            <div class="section">
+                <h2>F. AKTIVITAS 2 - MENGENAL VARIABLE</h2>
+                <p>Mengenal struktur dasar penulisan variabel:</p>
+                <div class="code-box">let nama = "Andi";</div>
+                <p><strong>let</strong> = Membuat variabel | <strong>nama</strong> = Nama variabel | <strong>=</strong> = Memberikan nilai | <strong>"Andi"</strong> = Nilai yang disimpan.</p>
+            </div>
+
+            <!-- AKTIVITAS G -->
+            <div class="section">
+                <h2>G. AKTIVITAS 3 - PRAKTIK MEMBUAT VARIABLE</h2>
+                <p>Hasil pengamatan pada Console browser saat menjalankan skrip variabel:</p>
+                <div class="answer-box">
+                    <strong>Hasil Pengamatan Console:</strong><br>
+                    Nama : Budi<br>
+                    Kelas : XI RPL 1<br>
+                    Umur : 16
+                </div>
+            </div>
+
+            <!-- AKTIVITAS H -->
+            <div class="section">
+                <h2>H. AKTIVITAS 4 - EKSPERIMEN</h2>
+                <div class="answer-box">
+                    <strong>Jawaban Eksperimen:</strong>
+                    <ol>
+                        <li><strong>Apakah hasil pada Console berubah?</strong> Ya, hasil pada console akan berubah sesuai dengan data diri baru yang kita masukkan.</li>
+                        <li><strong>Bagian kode mana yang kamu ubah?</strong> Nilai di sebelah kanan tanda sama dengan (<code>=</code>).</li>
+                        <li><strong>Mengapa program dapat menampilkan data yang baru?</strong>  Karena program membaca nilai terbaru yang tersimpan di dalam memori variabel tersebut.</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- AKTIVITAS I -->
+            <div class="section">
+                <h2>I. AKTIVITAS 5 - VARIABLE UNTUK MENYIMPAN BERBAGAI DATA</h2>
+                <table>
+                    <tr>
+                        <th>Variable</th>
+                        <th>Nilai</th>
+                        <th>Jenis Data</th>
+                    </tr>
+                    <tr><td>nama</td><td>"Andi"</td><td>Teks (String)</td></tr>
+                    <tr><td>umur</td><td>17</td><td>Angka (Number)</td></tr>
+                    <tr><td>tinggi</td><td>170</td><td>Angka (Number)</td></tr>
+                    <tr><td>aktif</td><td>true</td><td>Boolean (True/False)</td></tr>
+                </table>
+                <div class="answer-box">
+                    <strong>Kesimpulan:</strong><br>
+                    Andi adalah string atau teks.
+                    17 adalah number atau angka.
+                    true adalah boolean atau benar/salah.
+                </div>
+            </div>
+
+            <!-- AKTIVITAS J -->
+            <div class="section">
+                <h2>J. AKTIVITAS 6 – MENGENAL let DAN const</h2>
+                <div class="answer-box">
+                    <strong>Kesimpulan Sementara / Tabel Perbedaan:</strong>
+                    <table>
+                        <tr>
+                            <th>Keyword</th>
+                            <th>Nilai dapat diubah?</th>
+                            <th>Kegunaan Sederhana</th>
+                        </tr>
+                        <tr>
+                            <td>let</td>
+                            <td>Ya</td>
+                            <td>Untuk data nilai yang dapat diubah.</td>
+                        </tr>
+                        <tr>
+                            <td>const</td>
+                            <td>Tidak</td>
+                            <td>Untuk nilai yang tidak perlu diubah.</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <!-- AKTIVITAS K & L -->
+            <div class="section">
+              <div class="activity-card">
+        <h2>K. Aktivitas 7 - Aturan Penamaan Variable</h2>
+        <div class="answer-box">
+            <strong>Aturan Utama Penamaan Variable JavaScript:</strong>
+            <ul>
+                <li>Boleh menggunakan huruf, angka, garis bawah (<code>_</code>), atau tanda dolar (<code>$</code>).</li>
+                <li>Tidak boleh diawali dengan angka (Contoh salah: <code>2nama</code>).</li>
+                <li>Tidak boleh menggunakan spasi (Contoh salah: <code>nama siswa</code>).</li>
+                <li>Tidak boleh menggunakan karakter tanda hubung/strip (Contoh salah: <code>nama-siswa</code>).</li>
+                <li> bersifat <em>Case-Sensitive</em> (huruf besar dan kecil dibedakan). <code>nama</code> != <code>Nama</code>.</li>
+            </ul>
+        </div>
+    </div>
+            </div>
+          
+   <!-- L. AKTIVITAS 8 -->
+          <div class="section">
+    <div class="activity-card">
+        <h2>L. Aktivitas 8 - Mana yang Benar?</h2>
+        <table>
+            <tr><th>No</th><th>Nama Variable</th><th>Status (V / X)</th></tr>
+            <tr><td>1</td><td><code>nama</code></td><td class="correct">√ (Benar)</td></tr>
+            <tr><td>2</td><td><code>namaSiswa</code></td><td class="correct">√ (Benar)</td></tr>
+            <tr><td>3</td><td><code>nama_siswa</code></td><td class="correct">√ (Benar)</td></tr>
+            <tr><td>4</td><td><code>2nama</code></td><td class="incorrect">X (Salah - diawali angka)</td></tr>
+            <tr><td>5</td><td><code>nama siswa</code></td><td class="incorrect">X (Salah - pakai spasi)</td></tr>
+            <tr><td>6</td><td><code>nilaiAkhir</code></td><td class="correct">√ (Benar)</td></tr>
+            <tr><td>7</td><td><code>nilai1</code></td><td class="correct">√ (Benar)</td></tr>
+            <tr><td>8</td><td><code>nilai-akhir</code></td><td class="incorrect">X (Salah - pakai tanda -)</td></tr>
+            <tr><td>9</td><td><code>Alamat</code></td><td class="correct">√ (Benar)</td></tr>
+            <tr><td>10</td><td><code>alamatSiswa</code></td><td class="correct">√ (Benar)</td></tr>
+        </table>
+   
+                <div class="answer-box">
+                    <strong>Perbaikan Nama Variabel yang Salah:</strong>
+                    <ul>
+                        <li><code>2nama</code> (Dimulai dengan angka) Diperbaiki menjadi: <code>namaDua</code> atau <code>nama2</code></li>
+                        <li><code>nama siswa</code> (Mengandung spasi) Diperbaiki menjadi: <code>namaSiswa</code></li>
+                        <li><code>nilai-akhir</code> (Menggunakan tanda hubung/minus) Diperbaiki menjadi: <code>nilaiAkhir</code></li>
+                    </ul>
+                </div>
+            </div>
+    </div>
+        </div>
+          
+
+
+            <!-- AKTIVITAS M -->
+            <div class="section">
+                <h2>M. AKTIVITAS 9 - TANTANGAN DATA DIRI</h2>
+                <p>Versi data diri Saya:</p>
+                <div class="code-box">
+let nama = "Alifia";<br>
+let kelas = "X-PPLG 2";<br>
+let jurusan = "Pengembangan Perangkat Lunak dan Gim";<br>
+let umur = 16;<br>
+let hobi = "Menonton Film";<br>
+                  
+console.log(nama);<br>
+console.log(kelas);<br>
+console.log(jurusan);<br>
+console.log(umur);<br>
+console.log(hobi);
+                </div>
+                <button class="run-btn" onclick="runAktivitasM()">Jalankan Kode</button>
+                <div id="output-m" class="console-output"></div>
+            </div>
+
+            <!-- AKTIVITAS N -->
+            <div class="section">
+                <h2>N. AKTIVITAS 10 - TANTANGAN LEVEL 2</h2>
+                <div class="code-box">
+let namaSiswa = "Alifia";<br>
+let bahasaIndonesia = 88;<br>
+let matematika = 85;<br>
+let produktif = 92;<br>
+console.log(namaSiswa);<br>
+console.log(bahasaIndonesia);<br>
+console.log(matematika);<br>
+console.log(produktif);
+                </div>
+                <button class="run-btn" onclick="runAktivitasN()">Jalankan Kode</button>
+                <div id="output-n" class="console-output"></div>
+                <div class="answer-box" style="margin-top:15px;">
+                    <strong>Pertanyaan:</strong>
+                    <ol>
+                        <li>Berapa variable yang kamu buat? <strong>4 variabel</strong></li>
+                        <li>Mana variable yang menyimpan teks? <strong>namaSiswa</strong></li>
+                        <li>Mana variable yang menyimpan angka? <strong>bahasaIndonesia, matematika, produktif</strong></li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- AKTIVITAS O -->
+            <div class="section">
+                <h2>O. AKTIVITAS 11 - DEBUGGING</h2>
+                <div class="answer-box">
+                    <strong>Program yang Sudah Diperbaiki:</strong>
+                    <div class="code-box" style="margin-top:10px;">
+let namaSiswa = "Budi";<br>
+let umur = 16;<br>
+let kelasDua = "XI RPL";<br>
+console.log(namaSiswa);<br>
+console.log(umur);<br>
+console.log(kelasDua);
+                    </div>
+                    <strong>Kesalahan yang Ditemukan:</strong>
+                    <ol>
+                        <li><code>let nama siswa = ...</code> (Mengandung spasi pada penamaan variabel).</li>
+                        <li><code>let 2kelas = ...</code> (Nama variabel diawali dengan angka).</li>
+                        <li><code>console.log(nama siswa);</code> (Pemanggilan variabel tidak sesuai karena mengandung spasi).</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- AKTIVITAS P -->
+            <div class="section">
+                <h2>P. AKTIVITAS 12 - CHALLENGE ("PROFIL SISWA")</h2>
+                <div class="code-box">
+                 //  Program Profil Siswa Lengkap
+const nama = "Alifia";<br>
+const kelas = "X-PPLG 2";<br>
+const jurusan = "Pengembangan Perangkat Lunak dan Gim";<br>
+const umur = 16;<br>
+const kota = "Garut";<br>
+const hobi = "Menonton Film";<br>
+const citaCita = "Pengusaha";<br>
+// Tambahan 2 variabel baru:<br>
+const sekolah = "SMKN 1 Garut";<br>
+const statusAktif = true;<br>
+<br>
+console.log(nama);
+console.log(kelas);
+console.log(jurusan);
+console.log(umur);
+console.log(kota);
+console.log(hobi);
+console.log(citaCita);
+console.log(sekolah);
+console.log(statusAktif);</code></pre>
+                </div>
+                <button class="run-btn" onclick="runAktivitasP()">Jalankan Kode</button>
+                <div id="output-p" class="console-output"></div>
+            </div>
+
+            <!-- AKTIVITAS Q -->
+            <div class="section">
+                <h2>Q. AKTIVITAS 13 – THINK PAIR SHARE</h2>
+                <div class="answer-box">
+                    <strong>Kesimpulan Kelompok:</strong><br>
+                    Programmer membutuhkan variabel agar data atau informasi di dalam aplikasi dapat disimpan secara dinamis di memori, mudah dipanggil kembali, serta dapat dimanipulasi atau diubah nilainya kapan saja saat program berjalan tanpa harus menulis ulang nilai datanya secara manual berulang-ulang.
+                </div>
+            </div>
+
+            <!-- AKTIVITAS R & S -->
+            <div class="section">
+               <!-- R. REFLEKSI -->
+    <div class="activity-card">
+        <h2>R. Refleksi Pemahaman</h2>
+        <table>
+            <tr><th>Pernyataan</th><th>Pemahaman</th></tr>
+            <tr><td>Saya memahami pengertian variable</td><td class="correct">✓ Paham</td></tr>
+            <tr><td>Saya dapat membuat variable dengan let</td><td class="correct">✓ Mulai Paham</td></tr>
+            <tr><td>Saya memahami penggunaan const</td><td class="correct">✓ Mulai Paham</td></tr>
+            <tr><td>Saya dapat menyimpan data ke dalam variable</td><td class="correct">× Belum Paham</td></tr>
+            <tr><td>Saya dapat menampilkan variable dengan console.log()</td><td class="correct">✓ Mulai Paham</td></tr>
+            <tr><td>Saya dapat memberikan nama variable dengan benar</td><td class="correct">✓ Mulai Paham</td></tr>
+            <tr><td>Saya dapat menemukan kesalahan variable</td><td class="correct">✓ Mulai Paham</td></tr>
+        </table>
+    </div>
+
+                <h2> S. REFLEKSI & 3-2-1</h2>
+                <div class="answer-box">
+                    <strong>3 Hal yang Dipelajari:</strong>
+                    <ol>
+                        <li>Cara mendeklarasikan variabel menggunakan <code>let</code> dan <code>const</code>.</li>
+                        <li>Aturan penamaan variabel yang benar di JavaScript (tidak pakai spasi, tidak diawali angka).</li>
+                        <li>Menampilkan data ke konsol menggunakan <code>console.log()</code>.</li>
+                    </ol>
+                    <br>
+                    <strong>2 Hal yang Masih Membingungkan:</strong>
+                    <ol>
+                        <li>Kapan waktu terbaik memilih jenis data tertentu secara efisien.</li>
+                        <li>Pesan error JavaScript yang kadang panjang di console browser.</li>
+                    </ol>
+                    <br>
+                    <strong>1 Hal yang Ingin Dicoba:</strong>
+                    <ol>
+                        <li>Membuat kalkulator sederhana menggunakan variabel.</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- AKTIVITAS T -->
+            <div class="section">
+                <h2>T. KESIMPULAN</h2>
+                <div class="answer-box">
+                    <ul>
+                        <li><strong>Variable adalah</strong> wadah atau tempat penampung untuk menyimpan data di dalam memori program.</li>
+                        <li><strong>let digunakan untuk</strong> mendeklarasikan variabel yang nilainya masih dapat berubah (bisa di-reassign).</li>
+                        <li><strong>const digunakan untuk</strong> mendeklarasikan variabel yang nilainya tetap dan tidak boleh diubah setelah diinisialisasi.</li>
+                        <li><strong>Untuk menampilkan isi variable ke Console kita dapat menggunakan</strong> <code>console.log()</code>.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- AKTIVITAS U -->
+            <div class="section">
+                <h2>U. TUGAS INDIVIDU ("Data Produk Sederhana")</h2>
+                <div class="code-box">
+const namaProduk = "Miniatur Beruang";<br>
+const kategori = "Hiasan";<br>
+const harga = 85000;<br>
+let stok = 15;<br>
+const merek = "BrownBear";<br>
+const tersedia = true;<br>
+<br>
+console.log(namaProduk);<br>
+console.log(kategori);<br>
+console.log(harga);<br>
+console.log(stok);<br>
+console.log(merek);<br>
+console.log(tersedia);<br>
+                </div>
+                <button class="run-btn" onclick="runAktivitasU()">Jalankan Kode Produk</button>
+                <div id="output-u" class="console-output"></div>
+            </div>
+
+        </div>
+
+        <footer>
+            <p>&copy; 2026 Alifia - X-PPLG 2 | SMKN 1 Garut</p>
+        </footer>
+    </div>
+
+    <script>
+        function runAktivitasM() {
+            let nama = "Alifia";
+            let kelas = "X-PPLG 2";
+            let jurusan = "Pengembangan Perangkat Lunak dan Gim";
+            let umur = 16;
+            let hobi = "Menonton Film";
+            
+            let res = `${nama}\n${kelas}\n${jurusan}\n${umur}\n${hobi}`;
+            let out = document.getElementById('output-m');
+            out.style.display = 'block';
+            out.innerText = res;
+        }
+
+        function runAktivitasN() {
+            let namaSiswa = "Alifia";
+            let bahasaIndonesia = 88;
+            let matematika = 85;
+            let produktif = 92;
+
+            let res = `${namaSiswa}\nBahasa Indonesia: ${bahasaIndonesia}\nMatematika: ${matematika}\nProduktif: ${produktif}`;
+            let out = document.getElementById('output-n');
+            out.style.display = 'block';
+            out.innerText = res;
+        }
+
+        function runAktivitasP() {
+            const nama = "Alifia";
+            const kelas = "X-PPLG 2";
+            const jurusan = "Pengembangan Perangkat Lunak dan Gim";
+            const umur = 16;
+            const kota = "Garut";
+            const hobi = "Menonton Film";
+            const citaCita = "Pengusaha";
+            const sekolah = "SMKN 1 Garut";
+            const statusAktif = true;
+
+            let res = `${nama}\n${kelas}\n${jurusan}\n${umur} tahun\nKota: ${kota}\nHobi: ${hobi}\nCita-cita: ${citaCita}\nSekolah: ${sekolah}\nAktif: ${statusAktif}`;
+            let out = document.getElementById('output-p');
+            out.style.display = 'block';
+            out.innerText = res;
+        }
+
+        function runAktivitasU() {
+            const namaProduk = "Miniatur Beruang";
+            const kategori = "Hiasan";
+            const harga = 85000;
+            let stok = 15;
+            const merek = "BrownBear";
+            const tersedia = true;
+
+            let res = `Produk: ${namaProduk}\nKategori: ${kategori}\nHarga: Rp ${harga}\nStok: ${stok} unit\nMerek: ${merek}\nTersedia: ${tersedia}`;
+            let out = document.getElementById('output-u');
+            out.style.display = 'block';
+            out.innerText = res;
+        }
+    </script>
+</body>
+</html>
